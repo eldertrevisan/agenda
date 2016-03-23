@@ -1,0 +1,55 @@
+﻿{% extends "base.html" %}
+
+{% block title %}
+	<title>Index</title>
+{% endblock title %}
+	
+{% block content %}
+	{% for d in data %}
+	<form action="/contato/edita_contato/{{ d[0] }}" method="POST" 
+	accept-charset="ISO-8859-1">
+		<input type="text" size="100" maxlength="100" name="nome" 
+		placeholder="Nome Completo" required value='{{ d[1] }}' class="form" disabled>
+		
+		<input type="text" size="50" maxlength="16" name="telefone" 
+		placeholder="Telefone ex.:(99)9-9999-9999" required title="(99)9-9999-9999"
+		value='{{ d[2] }}' class="form"	disabled>
+		
+		<input type="text" size="100" maxlength="100" name="logradouro"
+		placeholder="Logradouro ex.: Rua 1 ou Avenida 1" value='{{ d[3] }}'
+		class="form" disabled>
+		
+		<input type="text" size="5" maxlength="5" name="numero"
+		placeholder="Número" value='{{ d[4] }}'	class="form" disabled>
+		
+		<input type="text" size="100" maxlength="100" name="complemento"
+		placeholder="Complemento" value='{{ d[5] }}' class="form" disabled>
+		
+		<input type="text" size="100" maxlength="100" name="bairro"
+		placeholder="Bairro" value='{{ d[6] }}'	class="form" disabled>
+		
+		<input type="text" size="100" maxlength="100" name="cidade"
+		placeholder="Cidade" value='{{ d[7] }}'	class="form" disabled>
+		
+		<input type="text" size="2" maxlength="2" name="uf" placeholder="UF"
+		list="uf" pattern="[A-Z]{2}" value='{{ d[8] }}'	class="form" disabled>
+		<datalist id="uf">
+			<option value="AC"><option value="AL"><option value="AM">
+			<option value="AP"><option value="BA"><option value="CE">
+			<option value="DF"><option value="ES"><option value="GO">
+			<option value="MA"><option value="MG"><option value="MS">
+			<option value="MT"><option value="PA"><option value="PB">
+			<option value="PE"><option value="PI"><option value="PR">
+			<option value="RJ"><option value="RN"><option value="RO">
+			<option value="RR"><option value="RS"><option value="SC">
+			<option value="SE"><option value="SP"><option value="TO">
+		</datalist>
+		<br>
+		<input type="submit" name="save" value="Salvar" disabled id="bt_salvar">
+		<input type="button" onclick="habilita_campos('form')" title="Editar"
+		value="Editar">
+		<input type="button" value="Excluir"
+		onclick="confirma_exclusao({{ d[0] }})">
+	</form>		
+	{% endfor %}
+{% endblock %}

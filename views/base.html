@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/static/css/agenda.css" media="screen">
+	<script src="/static/scripts/agenda.js"></script>
+	{% block title %}
+	<title>Base</title>
+	{% endblock title %}
+</head>
+<body>
+	<header>AGENDA</header>
+	<hr>
+	<div class="container">
+		<menu>
+			<ul>
+				<li><a href="/">Início</a></li>
+				|
+				<li><a href="/criar_contato">Criar Contato</a></li>
+			</ul>
+		</menu>
+		{% block content %}{% endblock %}
+	</div>
+</body>
+</html>

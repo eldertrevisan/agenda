@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+	<title>Index</title>
+{% endblock title %}
+	
+{% block content %}
+	<table sortable>
+		<tr>
+			<th>Nome</th>
+			<th>Telefone</th>
+			<th>Logradouro</th>
+			<th>Número</th>
+			<th>Complemento</th>
+			<th>Bairro</th>
+			<th>Cidade</th>
+			<th>UF</th>
+		</tr>
+		{% for d in data %}
+		<tr>
+			<td><a href="contato/{{ d[0] }}">{{ d[1] }}</a></td>
+			<td>{{ d[2] }}</td>
+			<td>{{ d[3] }}</td>
+			<td>{{ d[4] }}</td>
+			<td>{{ d[5] }}</td>
+			<td>{{ d[6] }}</td>
+			<td>{{ d[7] }}</td>
+			<td>{{ d[8] }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endblock %}
