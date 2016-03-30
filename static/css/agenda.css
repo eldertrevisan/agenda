@@ -7,7 +7,6 @@ body {
 .container {
 	margin: 0 auto;
 	width: 95%;
-	background-color: white;
 }
 
 header {
@@ -15,7 +14,6 @@ header {
 	font-weight: bold;
 	padding: 5px 0 5px;
 	text-align: center;
-	background-color:  #fff0e2;
 }
 
 menu {
