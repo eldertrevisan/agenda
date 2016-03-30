@@ -1,35 +1,41 @@
 ﻿{% extends "base.html" %}
 
 {% block title %}
-	<title>Index</title>
+	<title>Contato</title>
 {% endblock title %}
 	
 {% block content %}
 	{% for d in data %}
 	<form action="/contato/edita_contato/{{ d[0] }}" method="POST" 
 	accept-charset="ISO-8859-1">
-		<input type="text" size="100" maxlength="100" name="nome" 
-		placeholder="Nome Completo" required value='{{ d[1] }}' class="form" disabled>
+		<input type="text" size="100" maxlength="100" name="nome"
+		placeholder="Nome Completo" required value='{{ d[1] }}' class="form"
+		pattern="[^\u003c\u003e\u003d\u0022\u0027]*" disabled>
 		
 		<input type="text" size="50" maxlength="16" name="telefone" 
-		placeholder="Telefone ex.:(99)9-9999-9999" required title="(99)9-9999-9999"
-		value='{{ d[2] }}' class="form"	disabled>
+		placeholder="Telefone" title="Somente números"
+		value='{{ d[2] }}' class="form"	pattern="[^\u003c\u003e\u003d\u0022\u0027]*"
+		disabled required>
 		
 		<input type="text" size="100" maxlength="100" name="logradouro"
 		placeholder="Logradouro ex.: Rua 1 ou Avenida 1" value='{{ d[3] }}'
-		class="form" disabled>
+		class="form" pattern="[^\u003c\u003e\u003d\u0022\u0027]*" disabled>
 		
-		<input type="text" size="5" maxlength="5" name="numero"
-		placeholder="Número" value='{{ d[4] }}'	class="form" disabled>
+		<input type="text" size="5" maxlength="5" name="numero" pattern="[0-9]{1,5}"
+		placeholder="Número" value='{{ d[4] }}'	class="form"title="Somente números"
+		disabled>
 		
 		<input type="text" size="100" maxlength="100" name="complemento"
-		placeholder="Complemento" value='{{ d[5] }}' class="form" disabled>
+		placeholder="Complemento" value='{{ d[5] }}' class="form"
+		pattern="[^\u003c\u003e\u003d\u0022\u0027]*" disabled>
 		
 		<input type="text" size="100" maxlength="100" name="bairro"
-		placeholder="Bairro" value='{{ d[6] }}'	class="form" disabled>
+		placeholder="Bairro" value='{{ d[6] }}'	class="form"
+		pattern="[^\u003c\u003e\u003d\u0022\u0027]*" disabled>
 		
 		<input type="text" size="100" maxlength="100" name="cidade"
-		placeholder="Cidade" value='{{ d[7] }}'	class="form" disabled>
+		placeholder="Cidade" value='{{ d[7] }}'	class="form"
+		pattern="[^\u003c\u003e\u003d\u0022\u0027]*" disabled>
 		
 		<input type="text" size="2" maxlength="2" name="uf" placeholder="UF"
 		list="uf" pattern="[A-Z]{2}" value='{{ d[8] }}'	class="form" disabled>
@@ -50,6 +56,6 @@
 		value="Editar">
 		<input type="button" value="Excluir"
 		onclick="confirma_exclusao({{ d[0] }})">
-	</form>		
+	</form>
 	{% endfor %}
 {% endblock %}

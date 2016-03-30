@@ -8,22 +8,28 @@
 	<h4>Preencha os campos abaixo para adicionar um novo contato:</h4>
 	<form action="/criar_contato" method="POST" accept-charset="ISO-8859-1">
 		<input type="text" size="100" maxlength="100" name="nome" 
-		placeholder="Nome Completo" required autofocus>
+		placeholder="Nome Completo" pattern="[^\u003c\u003e\u003d\u0022\u0027]*"
+		 required autofocus >
 		
 		<input type="text" size="50" maxlength="15" name="telefone" 
-		placeholder="Telefone ex.:(99)9-9999-9999" required	title="(99)9-9999-9999">
+		placeholder="Telefone ex.:(99)9-9999-9999" title="Somente números"
+		pattern="[^\u003c\u003e\u003d\u0022\u0027]*" required>
 		
 		<input type="text" size="100" maxlength="100" name="logradouro"
-		placeholder="Logradouro ex.: Rua 1 ou Avenida 1">
+		placeholder="Logradouro ex.: Rua 1 ou Avenida 1"
+		pattern="[^\u003c\u003e\u003d\u0022\u0027]*">
 		
-		<input type="text" size="5" maxlength="5" name="numero" placeholder="Número">
+		<input type="text" size="5" maxlength="5" name="numero" pattern="\d{1,5}"
+		placeholder="Número" title="Somente números">
 		
 		<input type="text" size="100" maxlength="100" name="complemento"
-		placeholder="Complemento">
+		placeholder="Complemento"pattern="[^\u003c\u003e\u003d\u0022\u0027]*">
 		
-		<input type="text" size="100" maxlength="100" name="bairro" placeholder="Bairro">
+		<input type="text" size="100" maxlength="100" name="bairro" placeholder="Bairro"
+		pattern="[^\u003c\u003e\u003d\u0022\u0027]*">
 		
-		<input type="text" size="100" maxlength="100" name="cidade" placeholder="Cidade">
+		<input type="text" size="100" maxlength="100" name="cidade" placeholder="Cidade"
+		pattern="[^\u003c\u003e\u003d\u0022\u0027]*">
 		
 		<input type="text" size="2" maxlength="2" name="uf" placeholder="UF"
 		list="uf" pattern="[A-Z]{2}">
