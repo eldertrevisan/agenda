@@ -1,12 +1,8 @@
 ﻿{% extends "base.html" %}
-
-{% block title %}
-	<title>Contato</title>
-{% endblock title %}
 	
 {% block content %}
 	{% for d in data %}
-	<form action="/contato/edita_contato/{{ d[0] }}" method="POST" 
+	<form action="/contato/edita_contato/{{ d[0] }}" method="POST" id="contato"
 	accept-charset="ISO-8859-1">
 		<input type="text" size="100" maxlength="100" name="nome"
 		placeholder="Nome Completo" required value='{{ d[1] }}' class="form"
@@ -54,7 +50,7 @@
 		<input type="submit" name="save" value="Salvar" disabled id="bt_salvar">
 		<input type="button" onclick="habilita_campos('form')" title="Editar"
 		value="Editar">
-		<input type="button" value="Excluir"
+		<input id="bt_excluir" type="button" value="Excluir"
 		onclick="confirma_exclusao({{ d[0] }})">
 	</form>
 	{% endfor %}

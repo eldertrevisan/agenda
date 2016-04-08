@@ -20,7 +20,7 @@ BANCO = os.path.join(BASEDIR, 'agenda.db')
 @route('/index')
 def index():
 	contatos = model.ler_todos_contatos()
-	return template("index.html", data=contatos)
+	return template('index.html', title='Index', data=contatos)
 
 @route('/criar_contato', method=['GET', 'POST'])
 def criar_contato():
@@ -44,13 +44,13 @@ def criar_contato():
 		else:
 			redirect('/')
 	else:
-		return template('criar_contato.html')
+		return template('criar_contato.html', title="Criar contato")
 
 @route('/contato/<pk:int>', method='GET')
 def contato(pk):
 	pk = int(pk)
 	contato = model.ler_contato(pk)
-	return template('contato.html', data=contato)
+	return template('contato.html', title="Contato", data=contato)
 	
 @route('/contato/edita_contato/<pk:int>', method=['GET','POST'])
 def edita_contato(pk):
@@ -80,8 +80,8 @@ def edita_contato(pk):
 @route('/contato/exclui_contato/<pk:int>')
 def exclui_contato(pk):
 	pk = int(pk)
-	model.excluir_contato(pk)
-	redirect('/')
+	exc = model.excluir_contato(pk)
+	return (exc)
 
 @route('/static/<filename:path>')
 def server_static(filename):

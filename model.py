@@ -35,9 +35,8 @@ def criar_banco():
 			)
 			''')
 		con.commit()
-	except sqlite3.Error as erro:
-		con.rollback()
-		raise erro
+	except sqlite3.Error as err:
+		print(str(err.args[0]))
 	finally:
 		con.close()
 		
@@ -47,8 +46,8 @@ def ler_todos_contatos():
 		cursor = con.cursor()
 		cursor.execute('''SELECT * FROM agenda ORDER BY nome ASC''')
 		result = cursor.fetchall()
-	except sqlite3.Error as erro:
-		raise erro
+	except sqlite3.Error as err:
+		raise "Ocorreu o seguinte erro: '%s'"%(str(err.args[0]))
 	finally:
 		con.close()
 		return result
@@ -59,8 +58,8 @@ def ler_contato(pk):
 		cursor = con.cursor()
 		cursor.execute('''SELECT * FROM agenda WHERE id=?''',(pk,))
 		result = cursor.fetchall()
-	except sqlite3.Error as erro:
-		raise erro
+	except sqlite3.Error as err:
+		raise "Ocorreu o seguinte erro: '%s'"%(str(err.args[0]))
 	finally:
 		con.close()
 		return result
@@ -80,6 +79,8 @@ def inserir_contato(*args):
 		for erro,msg in ERROS.items():
 			if erro == str(err.args[0]):
 				mg = msg
+			else:
+				mg = "Ocorreu o seguinte erro: '%s'"%(str(err.args[0]))
 		con.rollback()
 	finally:
 		con.close()
@@ -99,6 +100,8 @@ def editar_contato(*args):
 		for erro,msg in ERROS.items():
 			if erro == str(err.args[0]):
 				mg = msg
+			else:
+				mg = "Ocorreu o seguinte erro: '%s'"%(str(err.args[0]))
 		con.rollback()
 	finally:
 		con.close()
@@ -110,9 +113,10 @@ def excluir_contato(pk):
 		cursor = con.cursor()
 		cursor.execute('''DELETE FROM agenda WHERE id=?''',(pk,))
 		con.commit()
-	except sqlite3.Error as erro:
+		return "Contato excluído com sucesso!"
+	except sqlite3.Error as err:
 		con.rollback()
-		raise erro
+		return "Ocorreu o seguinte erro: '%s'"%(str(err.args[0]))
 	finally:
 		con.close()
 
